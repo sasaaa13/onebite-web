@@ -16,22 +16,45 @@ function saveMenus(menus) {
 let cart = [];
 
 // ========================================================
-// 📱 UBAH NOMOR WHATSAPP ADMIN DI BAWAH INI (Pakai 62):
+// 📱 NOMOR WHATSAPP ADMIN BARU:
 // ========================================================
 const adminPhoneNumber = "6285654209605"; 
 
-// 🔑 PASSWORD PANEL ADMIN:
+// 🔑 PASSWORD PANEL ADMIN BARU:
 const ADMIN_PASSWORD = "kelompok999";
 
 const googleScriptUrl = "https://script.google.com/macros/s/AKfycbyAwuXiWzV5zMCdoSQP03BaxDry61nEoitCAt_MFpXVb-2VJgfTkvw4y5a9k-8O5XxW1g/exec";
 
+// ========================================================
+// 🔔 FUNGSI NOTIFIKASI CUSTOM CANTIK
+// ========================================================
+function showAlert(message, icon = "✨", title = "OneBite Info") {
+    const modal = document.getElementById('customAlert');
+    if (!modal) {
+        alert(message);
+        return;
+    }
+    document.getElementById('modalIcon').innerText = icon;
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalMessage').innerText = message;
+    modal.style.display = 'flex';
+}
+
+function closeCustomAlert() {
+    const modal = document.getElementById('customAlert');
+    if (modal) modal.style.display = 'none';
+}
+
+// ========================================================
+// INI FUNGSI UTAMA SAAT HALAMAN DIBUKA
+// ========================================================
 document.addEventListener("DOMContentLoaded", function() {
     // Proteksi Keamanan Halaman Admin
     if (window.location.pathname.includes('admin.html')) {
         const isAuth = sessionStorage.getItem('admin_authenticated');
         if (!isAuth) {
-            alert("Akses Ditolak! Anda harus memasukkan password admin dari halaman utama.");
-            window.location.href = 'index.html';
+            showAlert("Akses Ditolak! Anda harus memasukkan password admin dari halaman utama.", "🔒", "Akses Terbatas");
+            setTimeout(() => { window.location.href = 'index.html'; }, 1500);
             return;
         }
     }
@@ -48,14 +71,14 @@ document.addEventListener("DOMContentLoaded", function() {
     if (document.getElementById('adminMenuList')) renderAdminMenu();
 });
 
-// Fungsi Membuka Admin Dengan Password
+// Membuka Admin Dengan Password
 function openAdminWithPassword() {
     const inputPass = prompt("Masukkan Password Admin:");
     if (inputPass === ADMIN_PASSWORD) {
         sessionStorage.setItem('admin_authenticated', 'true');
         window.location.href = 'admin.html';
     } else if (inputPass !== null) {
-        alert("Password Salah! Akses ditolak.");
+        showAlert("Password Salah! Akses ditolak.", "❌", "Gagal Masuk");
     }
 }
 
@@ -98,7 +121,7 @@ function addToCart(id) {
         cart.push(selectedItem);
         updateTotal();
         checkDonutInCart();
-        alert(`✨ ${selectedItem.name} ditambahkan ke Pre-Order!`);
+        showAlert(`${selectedItem.name} telah ditambahkan ke daftar Pre-Order!`, "🍩", "Berhasil Ditambah!");
     }
 }
 
@@ -143,7 +166,7 @@ async function processOrder() {
     }
 
     if (cart.length === 0 || !name || !pickupDate || !pickupTime || !pickupLocation) {
-        alert("Mohon lengkapi semua data dan pilih minimal 1 menu!");
+        showAlert("Mohon isi semua form pendaftaran dan pilih minimal 1 item pesanan!", "⚠️", "Form Belum Lengkap");
         return;
     }
 
@@ -199,6 +222,7 @@ function addNewMenu(e) {
     saveMenus(menus);
     document.getElementById('addMenuForm').reset();
     renderAdminMenu();
+    showAlert("Menu baru berhasil disimpan!", "✅", "Menu Ditambahkan");
 }
 
 function toggleAvailability(id) {
