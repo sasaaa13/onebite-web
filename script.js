@@ -14,10 +14,28 @@ function saveMenus(menus) {
 }
 
 let cart = [];
-const adminPhoneNumber = "628565420960"; 
+
+// ========================================================
+// 📱 UBAH NOMOR WHATSAPP ADMIN DI BAWAH INI (Pakai 62):
+// ========================================================
+const adminPhoneNumber = "6285654209605"; 
+
+// 🔑 PASSWORD PANEL ADMIN:
+const ADMIN_PASSWORD = "admin123";
+
 const googleScriptUrl = "https://script.google.com/macros/s/AKfycbyAwuXiWzV5zMCdoSQP03BaxDry61nEoitCAt_MFpXVb-2VJgfTkvw4y5a9k-8O5XxW1g/exec";
 
 document.addEventListener("DOMContentLoaded", function() {
+    // Proteksi Keamanan Halaman Admin
+    if (window.location.pathname.includes('admin.html')) {
+        const isAuth = sessionStorage.getItem('admin_authenticated');
+        if (!isAuth) {
+            alert("Akses Ditolak! Anda harus memasukkan password admin dari halaman utama.");
+            window.location.href = 'index.html';
+            return;
+        }
+    }
+
     const pickupDateInput = document.getElementById('pickupDate');
     if (pickupDateInput) {
         const today = new Date();
@@ -29,6 +47,17 @@ document.addEventListener("DOMContentLoaded", function() {
     if (document.getElementById('menuList')) renderMenu('all');
     if (document.getElementById('adminMenuList')) renderAdminMenu();
 });
+
+// Fungsi Membuka Admin Dengan Password
+function openAdminWithPassword() {
+    const inputPass = prompt("Masukkan Password Admin:");
+    if (inputPass === ADMIN_PASSWORD) {
+        sessionStorage.setItem('admin_authenticated', 'true');
+        window.location.href = 'admin.html';
+    } else if (inputPass !== null) {
+        alert("Password Salah! Akses ditolak.");
+    }
+}
 
 function renderMenu(filter = 'all') {
     const menuContainer = document.getElementById('menuList');
@@ -68,7 +97,28 @@ function addToCart(id) {
     if (selectedItem) {
         cart.push(selectedItem);
         updateTotal();
+        checkDonutInCart();
         alert(`✨ ${selectedItem.name} ditambahkan ke Pre-Order!`);
+    }
+}
+
+// Cek apakah ada Donat / Combo di Keranjang untuk Menampilkan Box Rasa
+function checkDonutInCart() {
+    const flavorBox = document.getElementById('flavorBox');
+    if (!flavorBox) return;
+
+    const hasDonut = cart.some(item => 
+        item.name.toLowerCase().includes('donat') || 
+        item.name.toLowerCase().includes('donut') || 
+        item.name.toLowerCase().includes('combo') || 
+        item.category === 'sweet' || 
+        item.category === 'mix'
+    );
+
+    if (hasDonut) {
+        flavorBox.style.display = 'block';
+    } else {
+        flavorBox.style.display = 'none';
     }
 }
 
@@ -83,8 +133,14 @@ async function processOrder() {
     const pickupDate = document.getElementById('pickupDate').value;
     const pickupTime = document.getElementById('pickupTime').value;
     const pickupLocation = document.getElementById('pickupLocation').value.trim();
-    const selectedFlavors = Array.from(document.querySelectorAll('.flavor-option:checked')).map(cb => cb.value);
-    const flavorText = selectedFlavors.length > 0 ? selectedFlavors.join(', ') : "Bebas / Campur";
+
+    const flavorBox = document.getElementById('flavorBox');
+    let flavorText = "Tidak Ada Donat";
+
+    if (flavorBox && flavorBox.style.display !== 'none') {
+        const selectedFlavors = Array.from(document.querySelectorAll('.flavor-option:checked')).map(cb => cb.value);
+        flavorText = selectedFlavors.length > 0 ? selectedFlavors.join(', ') : "Bebas / Campur";
+    }
 
     if (cart.length === 0 || !name || !pickupDate || !pickupTime || !pickupLocation) {
         alert("Mohon lengkapi semua data dan pilih minimal 1 menu!");

@@ -45,7 +45,7 @@ body { background-color: #f4f6f8; color: #333; display: flex; justify-content: c
 .form-group label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #444; }
 .form-group input, .custom-select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 13px; }
 
-.flavor-box { background: #FFF5F7; padding: 12px; border-radius: 12px; border: 1px dashed #FFD6E0; margin-bottom: 12px; }
+.flavor-box { background: #FFF5F7; padding: 12px; border-radius: 12px; border: 1px dashed #FFD6E0; margin-bottom: 12px; transition: all 0.3s ease; }
 .flavor-title { color: #FF3366; font-weight: 800; font-size: 13px; }
 .flavor-subtitle { font-size: 11px; color: #666; margin-bottom: 8px; }
 .flavor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 12px; }

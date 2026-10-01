@@ -16,7 +16,7 @@
                 </div>
                 <p>Small Bites, Big Flavors!</p>
             </div>
-            <a href="admin.html" class="admin-link-badge">🔑</a>
+            <button onclick="openAdminWithPassword()" class="admin-link-badge" style="border:none; cursor:pointer;">🔑 Panel Admin</button>
         </header>
 
         <div class="promo-banner pulse">
@@ -39,9 +39,10 @@
                 <input type="text" id="userName" placeholder="Masukkan nama lengkap kamu..." required>
             </div>
 
-            <div class="flavor-box">
+            <!-- Pilihan Rasa Donat (Otomatis Sembunyi Jika Tidak Memilih Donat) -->
+            <div class="flavor-box" id="flavorBox" style="display: none;">
                 <label class="flavor-title">🍩 Pilih Rasa / Topping Donat Kamu:</label>
-                <p class="flavor-subtitle">(Bisa pilih varian rasa favoritmu di bawah ini)</p>
+                <p class="flavor-subtitle">(Silakan pilih varian rasa favoritmu di bawah ini)</p>
                 <div class="flavor-grid">
                     <label><input type="checkbox" class="flavor-option" value="Cokelat Glaze"> 🍫 Cokelat</label>
                     <label><input type="checkbox" class="flavor-option" value="Matcha Green Tea"> 🍵 Matcha</label>
@@ -77,7 +78,7 @@
 
         <footer class="footer">
             <p>Follow IG kami: <b>@onebite.campus</b> 📸</p>
-            <p>© 2026 OneBite Campus</p>
+            <p>© 2026 OneBite Campus - Kelompok 9</p>
         </footer>
     </div>
 
