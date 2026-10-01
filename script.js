@@ -21,7 +21,7 @@ let cart = [];
 const adminPhoneNumber = "6285654209605"; 
 
 // 🔑 PASSWORD PANEL ADMIN:
-const ADMIN_PASSWORD = "admin123";
+const ADMIN_PASSWORD = "kelompok999";
 
 const googleScriptUrl = "https://script.google.com/macros/s/AKfycbyAwuXiWzV5zMCdoSQP03BaxDry61nEoitCAt_MFpXVb-2VJgfTkvw4y5a9k-8O5XxW1g/exec";
 
