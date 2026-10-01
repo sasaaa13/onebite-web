@@ -1,0 +1,64 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+body { background-color: #f4f6f8; color: #333; display: flex; justify-content: center; min-height: 100vh; }
+.app-container { width: 100%; max-width: 480px; background: #fff; min-height: 100vh; padding: 16px; box-shadow: 0 0 15px rgba(0,0,0,0.05); }
+
+/* Keyframe Animations */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+.fade-in { animation: fadeIn 0.4s ease-in-out; }
+.slide-up { animation: slideUp 0.3s ease-out forwards; }
+.bounce { display: inline-block; animation: bounce 2s infinite; }
+
+/* Header & Banner */
+.header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f0f0f0; padding-bottom: 12px; margin-bottom: 15px; }
+.brand-logo-title { display: flex; align-items: center; gap: 6px; }
+.brand h1 { font-size: 22px; color: #FF3366; font-weight: 800; }
+.brand p { font-size: 11px; color: #777; }
+.admin-link-badge { background: #FFF0F3; color: #FF3366; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; text-decoration: none; border: 1px solid #FFD6E0; transition: transform 0.2s; }
+.admin-link-badge:active { transform: scale(0.95); }
+
+.promo-banner { background: #FFF8E7; border-left: 4px solid #FFC107; padding: 10px; font-size: 11px; border-radius: 6px; margin-bottom: 15px; color: #856404; }
+
+/* Filter & Cards */
+.category-filter { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 15px; }
+.filter-btn { background: #f0f0f0; border: none; padding: 8px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; color: #555; transition: all 0.2s; }
+.filter-btn.active { background: #FF3366; color: white; transform: scale(1.05); }
+
+.menu-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
+.menu-card { display: flex; justify-content: space-between; align-items: center; background: #fff; border: 1px solid #eee; padding: 14px; border-radius: 12px; transition: transform 0.2s, box-shadow 0.2s; }
+.menu-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+
+.menu-info h4 { font-size: 14px; color: #222; }
+.menu-info p { font-size: 11px; color: #666; margin: 2px 0 6px 0; }
+.menu-info .price { font-weight: bold; color: #FF3366; font-size: 14px; }
+.stock-tag { font-size: 10px; background: #E8F5E9; color: #2E7D32; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-left: 6px; }
+
+.add-btn { background: #FF3366; color: white; border: none; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer; transition: transform 0.1s; }
+.add-btn:active { transform: scale(0.9); }
+
+/* Forms & Checkout */
+.checkout-section { background: #fafafa; border: 1px solid #eaeaea; border-radius: 14px; padding: 16px; }
+.checkout-section h3 { font-size: 15px; margin-bottom: 12px; color: #333; }
+.form-group { margin-bottom: 12px; }
+.form-group label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #444; }
+.form-group input, .custom-select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 13px; }
+
+.flavor-box { background: #FFF5F7; padding: 12px; border-radius: 12px; border: 1px dashed #FFD6E0; margin-bottom: 12px; }
+.flavor-title { color: #FF3366; font-weight: 800; font-size: 13px; }
+.flavor-subtitle { font-size: 11px; color: #666; margin-bottom: 8px; }
+.flavor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 12px; }
+
+.cart-summary { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-top: 1px solid #eee; font-weight: bold; margin-top: 10px; }
+.total-price { color: #FF3366; font-size: 16px; }
+
+.btn-order { width: 100%; background: #25D366; color: white; border: none; padding: 12px; border-radius: 10px; font-size: 13px; font-weight: bold; cursor: pointer; transition: transform 0.1s; }
+.btn-order:active { transform: scale(0.98); }
+.bg-success { background: #28a745; }
+
+/* Admin UI */
+.admin-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.btn-reset { background: #6c757d; color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; }
+.admin-menu-item { display: flex; justify-content: space-between; align-items: center; background: #fff; border: 1px solid #e0e0e0; padding: 10px; border-radius: 8px; margin-bottom: 8px; }
+.footer { text-align: center; margin-top: 25px; font-size: 11px; color: #888; }

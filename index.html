@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneBite 🍩 - Pre-Order Snack Mini</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container fade-in">
+        <header class="header">
+            <div class="brand">
+                <div class="brand-logo-title">
+                    <h1>OneBite</h1>
+                    <span class="logo-emoji bounce">🍩</span>
+                </div>
+                <p>Small Bites, Big Flavors!</p>
+            </div>
+            <a href="admin.html" class="admin-link-badge">🔑</a>
+        </header>
+
+        <div class="promo-banner pulse">
+            📅 <b>INFO PRE-ORDER (PO):</b> Pesan hari ini untuk jadwal pengambilan sesuai jam pick-up pilihanmu!
+        </div>
+
+        <div class="category-filter">
+            <button class="filter-btn active" onclick="filterMenu('all', event)">Semua</button>
+            <button class="filter-btn" onclick="filterMenu('sweet', event)">🍩 Donat Mini</button>
+            <button class="filter-btn" onclick="filterMenu('savory', event)">🥟 Risol Mini</button>
+            <button class="filter-btn" onclick="filterMenu('mix', event)">🍱 Box Combo</button>
+        </div>
+
+        <main class="menu-list" id="menuList"></main>
+
+        <section class="checkout-section">
+            <h3>Form Pre-Order Pesanan</h3>
+            <div class="form-group">
+                <label for="userName">Nama Pemesan:</label>
+                <input type="text" id="userName" placeholder="Masukkan nama lengkap kamu..." required>
+            </div>
+
+            <div class="flavor-box">
+                <label class="flavor-title">🍩 Pilih Rasa / Topping Donat Kamu:</label>
+                <p class="flavor-subtitle">(Bisa pilih varian rasa favoritmu di bawah ini)</p>
+                <div class="flavor-grid">
+                    <label><input type="checkbox" class="flavor-option" value="Cokelat Glaze"> 🍫 Cokelat</label>
+                    <label><input type="checkbox" class="flavor-option" value="Matcha Green Tea"> 🍵 Matcha</label>
+                    <label><input type="checkbox" class="flavor-option" value="Strawberry Glaze"> 🍓 Strawberry</label>
+                    <label><input type="checkbox" class="flavor-option" value="Tiramisu"> ☕ Tiramisu</label>
+                    <label><input type="checkbox" class="flavor-option" value="Keju Parut"> 🧀 Keju</label>
+                    <label><input type="checkbox" class="flavor-option" value="Oreo Crunch"> 🍪 Oreo</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="pickupDate">Tanggal Pengambilan (Tanggal PO):</label>
+                <input type="date" id="pickupDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pickupTime">Jam Pick-Up Bebas:</label>
+                <input type="time" id="pickupTime" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pickupLocation">Titik Temu / Lokasi Pengambilan:</label>
+                <input type="text" id="pickupLocation" placeholder="Tuliskan titik temu (misal: Gazebo Gedung B)..." required>
+            </div>
+
+            <div class="cart-summary">
+                <span>Total Pre-Order:</span>
+                <span id="totalPrice" class="total-price">Rp0</span>
+            </div>
+
+            <button class="btn-order ripple" onclick="processOrder()">Kirim Pre-Order via WhatsApp & Sheets ➔</button>
+        </section>
+
+        <footer class="footer">
+            <p>Follow IG kami: <b>@onebite.campus</b> 📸</p>
+            <p>© 2026 OneBite Campus</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

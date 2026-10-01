@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneBite Admin 🔑 - Kelola Menu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container fade-in">
+        <header class="header">
+            <div class="brand">
+                <div class="brand-logo-title">
+                    <h1>OneBite Admin</h1>
+                    <span class="logo-emoji">🔑</span>
+                </div>
+                <p>Dashboard Kelola Menu & Stok (CRUD)</p>
+            </div>
+            <a href="index.html" class="admin-link-badge">⬅ Web Utama</a>
+        </header>
+
+        <section class="checkout-section">
+            <h3>➕ Tambah Menu Baru (Create)</h3>
+            <form id="addMenuForm" onsubmit="addNewMenu(event)">
+                <div class="form-group">
+                    <label for="newMenuName">Nama Menu:</label>
+                    <input type="text" id="newMenuName" placeholder="Contoh: Risol Mayo Spicy Pack" required>
+                </div>
+                <div class="form-group">
+                    <label for="newMenuCategory">Kategori:</label>
+                    <select id="newMenuCategory" class="custom-select" required>
+                        <option value="sweet">🍩 Sweet (Manis)</option>
+                        <option value="savory">🥟 Savory (Gurih)</option>
+                        <option value="mix">🍱 Mix Combo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="newMenuDesc">Deskripsi Ringkas:</label>
+                    <input type="text" id="newMenuDesc" placeholder="Contoh: 3 Risol mayo isian pedas gurih" required>
+                </div>
+                <div class="form-group">
+                    <label for="newMenuPrice">Harga (Rp):</label>
+                    <input type="number" id="newMenuPrice" placeholder="10000" required>
+                </div>
+                <button type="submit" class="btn-order bg-success">Simpan Menu Baru</button>
+            </form>
+        </section>
+
+        <section class="checkout-section" style="margin-top: 20px;">
+            <div class="admin-header-flex">
+                <h3>📋 Kelola Stok & Menu</h3>
+                <button onclick="resetToDefaultMenus()" class="btn-reset">Reset Default</button>
+            </div>
+            <div id="adminMenuList"></div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 OneBite Campus - Panel Admin Kelompok 9</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
