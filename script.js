@@ -1,6 +1,6 @@
 const defaultMenus = [
-    { id: 1, name: "OneBite Purple Cheese - Pack Isi 3 (PO)", category: "single", desc: "3 Roti Lembut Ubi Ungu Lumer Isian Keju Melted Premium", price: 10000, available: true },
-    { id: 2, name: "OneBite Purple Cheese - Party Box Isi 6 (PO)", category: "party", desc: "6 Roti Lembut Ubi Ungu Lumer Isian Keju Melted (Lebih Hemat!)", price: 18000, available: true }
+    { id: 1, name: "OneBite Purple Cheese - Pack Isi 3 (PO)", category: "single", desc: "3 Roti Lembut Ubi Ungu Lumer Isian Keju / Cokelat Premium", price: 10000, available: true },
+    { id: 2, name: "OneBite Purple Cheese - Party Box Isi 6 (PO)", category: "party", desc: "6 Roti Lembut Ubi Ungu Lumer (Porsi Puas & Lebih Hemat!)", price: 18000, available: true }
 ];
 
 function getActiveMenus() {
@@ -125,7 +125,7 @@ async function processOrder() {
     const pickupLocation = document.getElementById('pickupLocation').value.trim();
 
     const selectedFlavors = Array.from(document.querySelectorAll('.flavor-option:checked')).map(cb => cb.value);
-    let flavorText = selectedFlavors.length > 0 ? selectedFlavors.join(', ') : "Original Cheese";
+    let flavorText = selectedFlavors.length > 0 ? selectedFlavors.join(', ') : "Keju (Original)";
 
     if (cart.length === 0 || !name || !pickupDate || !pickupTime || !pickupLocation) {
         showAlert("Mohon isi semua form pendaftaran dan pilih minimal 1 item pesanan!", "⚠️", "Form Belum Lengkap");
@@ -139,11 +139,11 @@ async function processOrder() {
         await fetch(googleScriptUrl, {
             method: 'POST', mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, pickupTime: `Tgl ${pickupDate} - Jam ${pickupTime}`, pickupLocation: `${pickupLocation} (Topping: ${flavorText})`, orderList, total: `Rp${total.toLocaleString('id-ID')}` })
+            body: JSON.stringify({ name, pickupTime: `Tgl ${pickupDate} - Jam ${pickupTime}`, pickupLocation: `${pickupLocation} (Rasa: ${flavorText})`, orderList, total: `Rp${total.toLocaleString('id-ID')}` })
         });
     } catch (e) {}
 
-    let waMessage = `Halo Admin OneBite 🍠!\n\nPesanan Pre-Order Baru:\n${cart.map(i => `- ${i.name}`).join('\n')}\n\n🍠 *Topping Purple Cheese:* ${flavorText}\n*Total:* Rp${total.toLocaleString('id-ID')}\n*Nama:* ${name}\n*Jadwal Ambil:* ${pickupDate} (${pickupTime} WITA)\n*Lokasi:* ${pickupLocation}`;
+    let waMessage = `Halo Admin OneBite 🍠!\n\nPesanan Pre-Order Baru:\n${cart.map(i => `- ${i.name}`).join('\n')}\n\n🍠 *Rasa Purple Cheese:* ${flavorText}\n*Total:* Rp${total.toLocaleString('id-ID')}\n*Nama:* ${name}\n*Jadwal Ambil:* ${pickupDate} (${pickupTime} WITA)\n*Lokasi:* ${pickupLocation}`;
     window.open(`https://wa.me/${adminPhoneNumber}?text=${encodeURIComponent(waMessage)}`, '_blank');
 }
 
