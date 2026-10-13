@@ -1,7 +1,7 @@
 const defaultMenus = [
-    { id: 1, name: "Sweet Mini Donuts Pack (PO)", category: "sweet", desc: "3 Donat Mini lezat (Bisa pilih varian rasa sendiri!)", price: 10000, available: true },
+    { id: 1, name: "OneBite Purple Cheese Pack (PO)", category: "sweet", desc: "3 Roti Lembut Ubi Ungu Lumer Isian Keju Melted Premium", price: 10000, available: true },
     { id: 2, name: "Savory Mini Risol Pack (PO)", category: "savory", desc: "3 Risol Mini renyah isian mayo & ragout gurih melimpah", price: 10000, available: true },
-    { id: 3, name: "Box Mix Combo 2-in-1 (PO)", category: "mix", desc: "Paket Kombo Hemat: 2 Donat Mini + 2 Risol Mini", price: 12000, available: true }
+    { id: 3, name: "Box Mix Combo 2-in-1 (PO)", category: "mix", desc: "Paket Kombo Hemat: 2 OneBite Purple Cheese + 2 Risol Mini", price: 12000, available: true }
 ];
 
 function getActiveMenus() {
@@ -15,19 +15,13 @@ function saveMenus(menus) {
 
 let cart = [];
 
-// ========================================================
-// 📱 NOMOR WHATSAPP ADMIN BARU:
-// ========================================================
+// Nomor WhatsApp Admin & Password Admin
 const adminPhoneNumber = "6285654209605"; 
-
-// 🔑 PASSWORD PANEL ADMIN BARU:
 const ADMIN_PASSWORD = "kelompok999";
 
 const googleScriptUrl = "https://script.google.com/macros/s/AKfycbyAwuXiWzV5zMCdoSQP03BaxDry61nEoitCAt_MFpXVb-2VJgfTkvw4y5a9k-8O5XxW1g/exec";
 
-// ========================================================
-// 🔔 FUNGSI NOTIFIKASI CUSTOM CANTIK
-// ========================================================
+// Notifikasi Custom Modal
 function showAlert(message, icon = "✨", title = "OneBite Info") {
     const modal = document.getElementById('customAlert');
     if (!modal) {
@@ -45,11 +39,7 @@ function closeCustomAlert() {
     if (modal) modal.style.display = 'none';
 }
 
-// ========================================================
-// INI FUNGSI UTAMA SAAT HALAMAN DIBUKA
-// ========================================================
 document.addEventListener("DOMContentLoaded", function() {
-    // Proteksi Keamanan Halaman Admin
     if (window.location.pathname.includes('admin.html')) {
         const isAuth = sessionStorage.getItem('admin_authenticated');
         if (!isAuth) {
@@ -71,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function() {
     if (document.getElementById('adminMenuList')) renderAdminMenu();
 });
 
-// Membuka Admin Dengan Password
 function openAdminWithPassword() {
     const inputPass = prompt("Masukkan Password Admin:");
     if (inputPass === ADMIN_PASSWORD) {
@@ -120,25 +109,25 @@ function addToCart(id) {
     if (selectedItem) {
         cart.push(selectedItem);
         updateTotal();
-        checkDonutInCart();
-        showAlert(`${selectedItem.name} telah ditambahkan ke daftar Pre-Order!`, "🍩", "Berhasil Ditambah!");
+        checkBreadInCart();
+        showAlert(`${selectedItem.name} telah ditambahkan ke daftar Pre-Order!`, "🍠", "Berhasil Ditambah!");
     }
 }
 
-// Cek apakah ada Donat / Combo di Keranjang untuk Menampilkan Box Rasa
-function checkDonutInCart() {
+// Menampilkan Box Topping hanya jika memilih OneBite Purple Cheese / Combo
+function checkBreadInCart() {
     const flavorBox = document.getElementById('flavorBox');
     if (!flavorBox) return;
 
-    const hasDonut = cart.some(item => 
-        item.name.toLowerCase().includes('donat') || 
-        item.name.toLowerCase().includes('donut') || 
+    const hasBread = cart.some(item => 
+        item.name.toLowerCase().includes('purple') || 
+        item.name.toLowerCase().includes('ubi') || 
         item.name.toLowerCase().includes('combo') || 
         item.category === 'sweet' || 
         item.category === 'mix'
     );
 
-    if (hasDonut) {
+    if (hasBread) {
         flavorBox.style.display = 'block';
     } else {
         flavorBox.style.display = 'none';
@@ -158,11 +147,11 @@ async function processOrder() {
     const pickupLocation = document.getElementById('pickupLocation').value.trim();
 
     const flavorBox = document.getElementById('flavorBox');
-    let flavorText = "Tidak Ada Donat";
+    let flavorText = "Tanpa Topping Tambahan";
 
     if (flavorBox && flavorBox.style.display !== 'none') {
         const selectedFlavors = Array.from(document.querySelectorAll('.flavor-option:checked')).map(cb => cb.value);
-        flavorText = selectedFlavors.length > 0 ? selectedFlavors.join(', ') : "Bebas / Campur";
+        flavorText = selectedFlavors.length > 0 ? selectedFlavors.join(', ') : "Original Cheese";
     }
 
     if (cart.length === 0 || !name || !pickupDate || !pickupTime || !pickupLocation) {
@@ -177,11 +166,11 @@ async function processOrder() {
         await fetch(googleScriptUrl, {
             method: 'POST', mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, pickupTime: `Tgl ${pickupDate} - Jam ${pickupTime}`, pickupLocation: `${pickupLocation} (Rasa: ${flavorText})`, orderList, total: `Rp${total.toLocaleString('id-ID')}` })
+            body: JSON.stringify({ name, pickupTime: `Tgl ${pickupDate} - Jam ${pickupTime}`, pickupLocation: `${pickupLocation} (Topping: ${flavorText})`, orderList, total: `Rp${total.toLocaleString('id-ID')}` })
         });
     } catch (e) {}
 
-    let waMessage = `Halo Admin OneBite 🍩!\n\nPesanan Pre-Order Baru:\n${cart.map(i => `- ${i.name}`).join('\n')}\n\n🍩 *Rasa Donat:* ${flavorText}\n*Total:* Rp${total.toLocaleString('id-ID')}\n*Nama:* ${name}\n*Jadwal Ambil:* ${pickupDate} (${pickupTime} WITA)\n*Lokasi:* ${pickupLocation}`;
+    let waMessage = `Halo Admin OneBite 🍠!\n\nPesanan Pre-Order Baru:\n${cart.map(i => `- ${i.name}`).join('\n')}\n\n🍠 *Topping Purple Cheese:* ${flavorText}\n*Total:* Rp${total.toLocaleString('id-ID')}\n*Nama:* ${name}\n*Jadwal Ambil:* ${pickupDate} (${pickupTime} WITA)\n*Lokasi:* ${pickupLocation}`;
     window.open(`https://wa.me/${adminPhoneNumber}?text=${encodeURIComponent(waMessage)}`, '_blank');
 }
 
@@ -239,5 +228,9 @@ function deleteMenu(id) {
 }
 
 function resetToDefaultMenus() {
-    if (confirm("Reset menu awal?")) { saveMenus(defaultMenus); renderAdminMenu(); }
+    if (confirm("Reset menu awal?")) { 
+        localStorage.removeItem('onebite_menus');
+        saveMenus(defaultMenus); 
+        renderAdminMenu(); 
+    }
 }

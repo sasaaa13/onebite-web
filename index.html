@@ -3,32 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OneBite 🍩 - Pre-Order Snack Mini</title>
+    <title>OneBite 🍠 - Pre-Order Snack Mini</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<!-- Custom Notification Modal -->
-    <div id="customAlert" class="modal-overlay" style="display: none;">
-        <div class="modal-box scale-in">
-            <div class="modal-icon" id="modalIcon">✨</div>
-            <h3 id="modalTitle">Notifikasi</h3>
-            <p id="modalMessage">Pesan notifikasi di sini.</p>
-            <button onclick="closeCustomAlert()" class="modal-btn">OK</button>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
 <body>
     <div class="app-container fade-in">
         <header class="header">
             <div class="brand">
                 <div class="brand-logo-title">
                     <h1>OneBite</h1>
-                    <span class="logo-emoji bounce">🍩</span>
+                    <span class="logo-emoji bounce">🍠</span>
                 </div>
                 <p>Small Bites, Big Flavors!</p>
             </div>
-            <!-- Tombol Admin Hanya Ikon Kunci -->
+            <!-- Tombol Admin Ikon Kunci -->
             <button onclick="openAdminWithPassword()" class="admin-link-badge" style="border:none; cursor:pointer; font-size: 16px; padding: 6px 10px;" title="Panel Admin">🔑</button>
         </header>
 
@@ -38,7 +26,7 @@
 
         <div class="category-filter">
             <button class="filter-btn active" onclick="filterMenu('all', event)">Semua</button>
-            <button class="filter-btn" onclick="filterMenu('sweet', event)">🍩 Donat Mini</button>
+            <button class="filter-btn" onclick="filterMenu('sweet', event)">🍠 Purple Cheese</button>
             <button class="filter-btn" onclick="filterMenu('savory', event)">🥟 Risol Mini</button>
             <button class="filter-btn" onclick="filterMenu('mix', event)">🍱 Box Combo</button>
         </div>
@@ -52,17 +40,17 @@
                 <input type="text" id="userName" placeholder="Masukkan nama lengkap kamu..." required>
             </div>
 
-            <!-- Pilihan Rasa Donat (Otomatis Sembunyi Jika Tidak Memilih Donat) -->
+            <!-- Pilihan Topping OneBite Purple Cheese -->
             <div class="flavor-box" id="flavorBox" style="display: none;">
-                <label class="flavor-title">🍩 Pilih Rasa / Topping Donat Kamu:</label>
-                <p class="flavor-subtitle">(Silakan pilih varian rasa favoritmu di bawah ini)</p>
+                <label class="flavor-title">🍠 Pilih Topping / Varian OneBite Purple Cheese:</label>
+                <p class="flavor-subtitle">(Silakan pilih varian topping favoritmu di bawah ini)</p>
                 <div class="flavor-grid">
-                    <label><input type="checkbox" class="flavor-option" value="Cokelat Glaze"> 🍫 Cokelat</label>
-                    <label><input type="checkbox" class="flavor-option" value="Matcha Green Tea"> 🍵 Matcha</label>
-                    <label><input type="checkbox" class="flavor-option" value="Strawberry Glaze"> 🍓 Strawberry</label>
-                    <label><input type="checkbox" class="flavor-option" value="Tiramisu"> ☕ Tiramisu</label>
-                    <label><input type="checkbox" class="flavor-option" value="Keju Parut"> 🧀 Keju</label>
-                    <label><input type="checkbox" class="flavor-option" value="Oreo Crunch"> 🍪 Oreo</label>
+                    <label><input type="checkbox" class="flavor-option" value="Melted Cheese"> 🧀 Melted Cheese</label>
+                    <label><input type="checkbox" class="flavor-option" value="Cream Cheese"> 🥛 Cream Cheese</label>
+                    <label><input type="checkbox" class="flavor-option" value="Chocolate Melt"> 🍫 Cokelat Melt</label>
+                    <label><input type="checkbox" class="flavor-option" value="Matcha Glaze"> 🍵 Matcha</label>
+                    <label><input type="checkbox" class="flavor-option" value="Almond Slice"> 🌰 Almond Slice</label>
+                    <label><input type="checkbox" class="flavor-option" value="Oreo Crumbs"> 🍪 Oreo Crunch</label>
                 </div>
             </div>
 
@@ -93,6 +81,16 @@
             <p>Follow IG kami: <b>@onebite.campus</b> 📸</p>
             <p>© 2026 OneBite Campus - Kelompok 9</p>
         </footer>
+    </div>
+
+    <!-- Custom Notification Modal -->
+    <div id="customAlert" class="modal-overlay" style="display: none;">
+        <div class="modal-box scale-in">
+            <div class="modal-icon" id="modalIcon">✨</div>
+            <h3 id="modalTitle">Notifikasi</h3>
+            <p id="modalMessage">Pesan notifikasi di sini.</p>
+            <button onclick="closeCustomAlert()" class="modal-btn">OK</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
