@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OneBite 🍠 - Pre-Order Snack Mini</title>
+    <title>OneBite 🍠 - Pre-Order Purple Cheese Bread</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,10 +25,9 @@
         </div>
 
         <div class="category-filter">
-            <button class="filter-btn active" onclick="filterMenu('all', event)">Semua</button>
-            <button class="filter-btn" onclick="filterMenu('sweet', event)">🍠 Purple Cheese</button>
-            <button class="filter-btn" onclick="filterMenu('savory', event)">🥟 Risol Mini</button>
-            <button class="filter-btn" onclick="filterMenu('mix', event)">🍱 Box Combo</button>
+            <button class="filter-btn active" onclick="filterMenu('all', event)">Semua Paket</button>
+            <button class="filter-btn" onclick="filterMenu('single', event)">📦 Pack Personal</button>
+            <button class="filter-btn" onclick="filterMenu('party', event)">🍱 Party Box</button>
         </div>
 
         <main class="menu-list" id="menuList"></main>
@@ -41,9 +40,9 @@
             </div>
 
             <!-- Pilihan Topping OneBite Purple Cheese -->
-            <div class="flavor-box" id="flavorBox" style="display: none;">
-                <label class="flavor-title">🍠 Pilih Topping / Varian OneBite Purple Cheese:</label>
-                <p class="flavor-subtitle">(Silakan pilih varian topping favoritmu di bawah ini)</p>
+            <div class="flavor-box" id="flavorBox">
+                <label class="flavor-title">🍠 Pilih Topping / Varian Extra Topping:</label>
+                <p class="flavor-subtitle">(Bisa pilih lebih dari satu topping favoritmu)</p>
                 <div class="flavor-grid">
                     <label><input type="checkbox" class="flavor-option" value="Melted Cheese"> 🧀 Melted Cheese</label>
                     <label><input type="checkbox" class="flavor-option" value="Cream Cheese"> 🥛 Cream Cheese</label>

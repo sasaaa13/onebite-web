@@ -1,7 +1,6 @@
 const defaultMenus = [
-    { id: 1, name: "OneBite Purple Cheese Pack (PO)", category: "sweet", desc: "3 Roti Lembut Ubi Ungu Lumer Isian Keju Melted Premium", price: 10000, available: true },
-    { id: 2, name: "Savory Mini Risol Pack (PO)", category: "savory", desc: "3 Risol Mini renyah isian mayo & ragout gurih melimpah", price: 10000, available: true },
-    { id: 3, name: "Box Mix Combo 2-in-1 (PO)", category: "mix", desc: "Paket Kombo Hemat: 2 OneBite Purple Cheese + 2 Risol Mini", price: 12000, available: true }
+    { id: 1, name: "OneBite Purple Cheese - Pack Isi 3 (PO)", category: "single", desc: "3 Roti Lembut Ubi Ungu Lumer Isian Keju Melted Premium", price: 10000, available: true },
+    { id: 2, name: "OneBite Purple Cheese - Party Box Isi 6 (PO)", category: "party", desc: "6 Roti Lembut Ubi Ungu Lumer Isian Keju Melted (Lebih Hemat!)", price: 18000, available: true }
 ];
 
 function getActiveMenus() {
@@ -109,28 +108,7 @@ function addToCart(id) {
     if (selectedItem) {
         cart.push(selectedItem);
         updateTotal();
-        checkBreadInCart();
         showAlert(`${selectedItem.name} telah ditambahkan ke daftar Pre-Order!`, "🍠", "Berhasil Ditambah!");
-    }
-}
-
-// Menampilkan Box Topping hanya jika memilih OneBite Purple Cheese / Combo
-function checkBreadInCart() {
-    const flavorBox = document.getElementById('flavorBox');
-    if (!flavorBox) return;
-
-    const hasBread = cart.some(item => 
-        item.name.toLowerCase().includes('purple') || 
-        item.name.toLowerCase().includes('ubi') || 
-        item.name.toLowerCase().includes('combo') || 
-        item.category === 'sweet' || 
-        item.category === 'mix'
-    );
-
-    if (hasBread) {
-        flavorBox.style.display = 'block';
-    } else {
-        flavorBox.style.display = 'none';
     }
 }
 
@@ -146,13 +124,8 @@ async function processOrder() {
     const pickupTime = document.getElementById('pickupTime').value;
     const pickupLocation = document.getElementById('pickupLocation').value.trim();
 
-    const flavorBox = document.getElementById('flavorBox');
-    let flavorText = "Tanpa Topping Tambahan";
-
-    if (flavorBox && flavorBox.style.display !== 'none') {
-        const selectedFlavors = Array.from(document.querySelectorAll('.flavor-option:checked')).map(cb => cb.value);
-        flavorText = selectedFlavors.length > 0 ? selectedFlavors.join(', ') : "Original Cheese";
-    }
+    const selectedFlavors = Array.from(document.querySelectorAll('.flavor-option:checked')).map(cb => cb.value);
+    let flavorText = selectedFlavors.length > 0 ? selectedFlavors.join(', ') : "Original Cheese";
 
     if (cart.length === 0 || !name || !pickupDate || !pickupTime || !pickupLocation) {
         showAlert("Mohon isi semua form pendaftaran dan pilih minimal 1 item pesanan!", "⚠️", "Form Belum Lengkap");
